@@ -13,12 +13,16 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+<<<<<<< HEAD
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+=======
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+>>>>>>> 7b2c8417b1ba33e65a3867897923182c9d7231d6
 
 /**
  *
@@ -31,6 +35,9 @@ public class RedisConfig {
     public RedisTemplate<String,String> redisTemplate(RedisConnectionFactory factory){
         RedisTemplate<String,String> redisTemplate =new RedisTemplate<>();
         redisTemplate.setConnectionFactory(factory);
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(stringRedisSerializer);
         return redisTemplate;
     }
 
