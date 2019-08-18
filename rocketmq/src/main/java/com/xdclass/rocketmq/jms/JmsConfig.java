@@ -4,48 +4,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-@Component
-@PropertySource("classpath:config.properties")
-@ConfigurationProperties(prefix = "rocketmq")
 public class JmsConfig {
 
-    private String nameServer;
+    public static final String nameServer="39.107.79.33:9876";
 
-    private String topic;
+    public static final String topic="xdclass_pay_test_topic_666";
 
-   private String consumerGroup;
+    public static final String consumerGroup="pay_consumer_group";
 
-   private String producerGroup;
+    public static final String producerGroup="pay_producer_group";
 
-    public String getNameServer() {
-        return nameServer;
     }
-
-    public void setNameServer(String nameServer) {
-        this.nameServer = nameServer;
-    }
-
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
-    public String getConsumerGroup() {
-        return consumerGroup;
-    }
-
-    public void setConsumerGroup(String consumerGroup) {
-        this.consumerGroup = consumerGroup;
-    }
-
-    public String getProducerGroup() {
-        return producerGroup;
-    }
-
-    public void setProducerGroup(String producerGroup) {
-        this.producerGroup = producerGroup;
-    }
-}

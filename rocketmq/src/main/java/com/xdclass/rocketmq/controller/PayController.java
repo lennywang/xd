@@ -19,12 +19,11 @@ public class PayController {
     @Autowired
     private PayProducer payProducer;
 
-    @Autowired
-    private JmsConfig jmsConfig;
+
 
     @RequestMapping("/api/v1/pay_callback")
     public Object callback(String text) throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
-        Message message = new Message(jmsConfig.getTopic(), "taga", ("hello xdclass rocketmq = " + text).getBytes());
+        Message message = new Message(JmsConfig.topic, "taga", ("hello xdclass rocketmq = " + text).getBytes());
         SendResult sendResult = payProducer.getProducer().send(message);
         System.out.println(sendResult);
 
