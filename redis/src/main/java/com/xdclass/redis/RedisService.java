@@ -2,7 +2,9 @@ package com.xdclass.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -37,4 +39,18 @@ public class RedisService {
         result = operations.get(key);
         return result;
     }
+
+    public void zAdd(String key,Object value,double score)
+    {
+        SetOperations zset = redisTemplate.opsForSet();
+        zset.add(key,value,score);
+    }
+
+    public void incrementScore(String key,Object value,double score)
+    {
+        ZSetOperations zSet = redisTemplate.opsForZSet();
+        zSet.incrementScore(key,value,score);
+    }
+
+
 }
