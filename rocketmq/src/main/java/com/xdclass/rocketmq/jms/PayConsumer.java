@@ -20,15 +20,13 @@ public class PayConsumer {
 
     private DefaultMQPushConsumer consumer;
 
-    @Autowired
-    private JmsConfig jmsConfig;
 
     public PayConsumer() throws MQClientException {
-        consumer =new DefaultMQPushConsumer(jmsConfig.getConsumerGroup());
-        consumer.setNamesrvAddr(jmsConfig.getNameServer());
+        consumer =new DefaultMQPushConsumer(JmsConfig.consumerGroup);
+        consumer.setNamesrvAddr(JmsConfig.nameServer);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
 
-        consumer.subscribe(jmsConfig.getTopic(),"*");
+        consumer.subscribe(JmsConfig.topic,"*");
 
         consumer.registerMessageListener(new MessageListenerConcurrently(){
 

@@ -10,12 +10,9 @@ public class PayProducer {
 
     private DefaultMQProducer producer;
 
-    @Autowired
-    private JmsConfig jmsConfig;
-
     public PayProducer() {
-        producer = new DefaultMQProducer(jmsConfig.getProducerGroup());
-        producer.setNamesrvAddr(jmsConfig.getNameServer());
+        producer = new DefaultMQProducer(JmsConfig.producerGroup);
+        producer.setNamesrvAddr(JmsConfig.nameServer);
         start();
     }
 
